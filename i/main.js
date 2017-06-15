@@ -183,9 +183,9 @@ $(document).ready(function() {
 		$('#mY').html('Y: '+data.mpos[1]);
 		$('#mZ').html('Z: '+data.mpos[2]);
 		// TODO calculate wpos here
-		$('#wX').html('X: '+data.wpos[0]);
-		$('#wY').html('Y: '+data.wpos[1]);
-		$('#wZ').html('Z: '+data.wpos[2]);
+		$('#wX').html('X: '+data.mpos[0]);
+		$('#wY').html('Y: '+data.mpos[1]);
+		$('#wZ').html('Z: '+data.mpos[2]);
 
 		// Only attempt to change things if the unit of measurement has changed
 		if(data.unitsOfMeasurement!=lastUnitsOfMeasurement) {

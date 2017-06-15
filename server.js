@@ -199,6 +199,7 @@ function serialData(data, port) {
 
 		// remove last >
 		t = t.substr(0,t.length-2);
+		console.log(t);
 		t = t.split(/\|/);
 		//split out the position info, default to mpos
 		mp = t[1].split(/,|:/);
