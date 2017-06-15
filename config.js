@@ -15,7 +15,7 @@ config.usettyAMA0 = 0;
 config.enableSimpleControls = 1;
 
 // Enable probe controls
-config.enableProbeControls = 1;
+config.enableProbeControls = 0;
 
 // Enable jsCut
 config.enableJsCut = true;

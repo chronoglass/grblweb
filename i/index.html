@@ -177,8 +177,7 @@ td {
 #mX, #mY, #mZ,
 #wX, #wY, #wZ {
 	text-align: left;
-	padding-left: 15px;
-	margin: 4px;
+	padding-left: 10px;
 	font-size: 30px;
 	width: 100%;
 	border: 1px solid #aaa;
@@ -327,33 +326,32 @@ td {
 
 		<!-- Machine/Working position tabs -->
 		<div class="row">
-			<ul class="nav nav-tabs nav-justified" role="tablist">
-				<li id="mpA">
-					<a id="mpC" href="#" data-powertip="Position relative to true home (0, 0, 0)" data-powertippos="nw-alt">Machine Position</a>
-				</li>
-				<li id="wpA" class="active">
-					<a id="wpC" href="#" data-powertip="Position relative to X, Y, Z offsets" data-powertippos="nw-alt">Working Position</a>
-				</li>
-			</ul>
+			<div class="col-md-14">
+				<div id="mpA" style="float: left; width: 150px">
+					<div id="mpC" href="#" data-powertip="Position relative to true home (0, 0, 0)" data-powertippos="nw-alt">Machine Position</div>
+				</div>
+				<div id="wpA" style="margin-left: 150px; width: 150px">
+					<div id="wpC" href="#" data-powertip="Position relative to X, Y, Z offsets" data-powertippos="nw-alt">Working Position</div>
+				</div>
+                <div style="clear: both"></div>
+			</div>
 		</div>
 
 		<!-- Machine/Working position coordinates -->
 		<div class="row">
 			<div>
-				<div class="col-md-14" id="mPosition" style="display: none;">
-					<div style="text-align: center">
+				<div class="col-md-14" id="mPosition">
+					<div style="float: left; width: 150px;">
 						<div id="mX">X: 0.000</div>
 						<div id="mY">Y: 0.000</div>
 						<div id="mZ">Z: 0.000</div>
 					</div>
-				</div>
-
-				<div class="col-md-14" id="wPosition">
-					<div style="text-align: center">
+					<div style="margin-left: 150px; width: 150px;">
 						<div id="wX">X: 0.000</div>
 						<div id="wY">Y: 0.000</div>
 						<div id="wZ">Z: 0.000</div>
 					</div>
+                    <div style="clear: both"></div>
 				</div>
 			</div>
 		</div>
@@ -406,7 +404,7 @@ td {
 			</div>
 
 			<!-- Simple controls -->
-			<table id="simpleControls" style="display:none">
+			<table id="simpleControls" style="display:none; height: 190px; width:300px" border="0">
             	<thead>
             		<tr>
             			<th colspan="3">X/Y</th>
