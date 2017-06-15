@@ -199,14 +199,17 @@ function serialData(data, port) {
 
 		// remove last >
 		t = t.substr(0,t.length-2);
-
+		t = t.split(/\|/);
+		//split out the position info, default to mpos
+		mp = t[1].split(/,|:/);
+		ex = t[2];
 		// split on , and :
-		t = t.split(/,|:/);
+		//t = t.split(/,|:/);
 
 		var machineData = {
 			'status': t[0],
-			'mpos': [t[2], t[3], t[4]],
-			'wpos':[t[6], t[7], t[8]],
+			'mpos': [mp[1], mp[2], mp[3]],
+			'wpos':["NA", "NA", "NA"],
 			'unitsOfMeasurement': unitsOfMeasurement
 		};
 
