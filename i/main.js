@@ -182,6 +182,7 @@ $(document).ready(function() {
 		$('#mX').html('X: '+data.mpos[0]);
 		$('#mY').html('Y: '+data.mpos[1]);
 		$('#mZ').html('Z: '+data.mpos[2]);
+		// TODO calculate wpos here
 		$('#wX').html('X: '+data.wpos[0]);
 		$('#wY').html('Y: '+data.wpos[1]);
 		$('#wZ').html('Z: '+data.wpos[2]);
@@ -450,19 +451,19 @@ $(document).ready(function() {
 	});
 
 	$('#xM').on('click', function() {
-		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' X-'+$('#jogSize').val()});
+		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' X-'+$('#jogSize').val()});
 	});
 
 	$('#xP').on('click', function() {
-		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' X'+$('#jogSize').val()});
+		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' X'+$('#jogSize').val()});
 	});
 
 	$('#yP').on('click', function() {
-		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' Y'+$('#jogSize').val()});
+		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' Y'+$('#jogSize').val()});
 	});
 
 	$('#yM').on('click', function() {
-		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' Y-'+$('#jogSize').val()});
+		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' Y-'+$('#jogSize').val()});
 	});
 
 	$('#zP').on('click', function() {
@@ -481,7 +482,7 @@ $(document).ready(function() {
 		$('#console').append('<p><span style="color:red !important;font-weight:bold">!!!!: Only moved '+distance+lastUnitsOfMeasurement+' due to maxMoveZ safety limit</span></p>');
 		$('#console').scrollTop($("#console")[0].scrollHeight - $("#console").height());
 
-		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' Z'+distance});
+		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' Z'+distance});
 	});
 
 	$('#zM').on('click', function() {
@@ -500,7 +501,7 @@ $(document).ready(function() {
 		$('#console').append('<p><span style="color:red !important;font-weight:bold">!!!!: Only moved '+distance+lastUnitsOfMeasurement+' due to maxMoveZ safety limit</span></p>');
 		$('#console').scrollTop($("#console")[0].scrollHeight - $("#console").height());
 
-		socket.emit('gcodeLine', { line: '$J G91 G20 F'+$('#jogSpeed').val()+' Z-'+distance});
+		socket.emit('gcodeLine', { line: '$J G91 F'+$('#jogSpeed').val()+' Z-'+distance});
 	});
 
 	// WASD and up/down keys
