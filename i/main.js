@@ -450,19 +450,19 @@ $(document).ready(function() {
 	});
 
 	$('#xM').on('click', function() {
-		socket.emit('gcodeLine', { line: 'G91\nG1 F'+$('#jogSpeed').val()+' X-'+$('#jogSize').val()+'\nG90'});
+		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' X-'+$('#jogSize').val()});
 	});
 
 	$('#xP').on('click', function() {
-		socket.emit('gcodeLine', { line: 'G91\nG1 F'+$('#jogSpeed').val()+' X'+$('#jogSize').val()+'\nG90'});
+		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' X'+$('#jogSize').val()});
 	});
 
 	$('#yP').on('click', function() {
-		socket.emit('gcodeLine', { line: 'G91\nG1 F'+$('#jogSpeed').val()+' Y'+$('#jogSize').val()+'\nG90'});
+		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' Y'+$('#jogSize').val()});
 	});
 
 	$('#yM').on('click', function() {
-		socket.emit('gcodeLine', { line: 'G91\nG1 F'+$('#jogSpeed').val()+' Y-'+$('#jogSize').val()+'\nG90'});
+		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' Y-'+$('#jogSize').val()});
 	});
 
 	$('#zP').on('click', function() {
