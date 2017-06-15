@@ -481,7 +481,7 @@ $(document).ready(function() {
 		$('#console').append('<p><span style="color:red !important;font-weight:bold">!!!!: Only moved '+distance+lastUnitsOfMeasurement+' due to maxMoveZ safety limit</span></p>');
 		$('#console').scrollTop($("#console")[0].scrollHeight - $("#console").height());
 
-		socket.emit('gcodeLine', { line: 'G91\nG1 F'+$('#jogSpeed').val()+' Z'+distance+'\nG90'});
+		socket.emit('gcodeLine', { line: '$J=G91 G20 F'+$('#jogSpeed').val()+' Z'+distance});
 	});
 
 	$('#zM').on('click', function() {
@@ -500,7 +500,7 @@ $(document).ready(function() {
 		$('#console').append('<p><span style="color:red !important;font-weight:bold">!!!!: Only moved '+distance+lastUnitsOfMeasurement+' due to maxMoveZ safety limit</span></p>');
 		$('#console').scrollTop($("#console")[0].scrollHeight - $("#console").height());
 
-		socket.emit('gcodeLine', { line: 'G91\nG1 F'+$('#jogSpeed').val()+' Z-'+distance+'\nG90'});
+		socket.emit('gcodeLine', { line: '$J G91 G20 F'+$('#jogSpeed').val()+' Z-'+distance});
 	});
 
 	// WASD and up/down keys
