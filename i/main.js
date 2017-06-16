@@ -457,12 +457,14 @@ $(document).ready(function() {
 	});
 
 	$('#xM').on('click', function() {
-		move.x = move.x+parseFloat($('#jogSize').val());
+		var distance = parseFloat($('#jogSize').val());
+		move.x = move.x+distance;
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' X-'+$('#jogSize').val()});
 	});
 
 	$('#xP').on('click', function() {
-		move.x = move.x-parseFloat($('#jogSize').val());
+		var distance = parseFloat($('#jogSize').val());
+		move.x = move.x-distance;
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' X'+$('#jogSize').val()});
 	});
 
