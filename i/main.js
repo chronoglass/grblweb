@@ -457,22 +457,22 @@ $(document).ready(function() {
 	});
 
 	$('#xM').on('click', function() {
-		move.x = move.x+$('#jogSize'.val());
+		move.x = move.x+$('#jogSize').val();
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' X-'+$('#jogSize').val()});
 	});
 
 	$('#xP').on('click', function() {
-		move.x = move.x-$('#jogSize'.val());
+		move.x = move.x-$('#jogSize').val();
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' X'+$('#jogSize').val()});
 	});
 
 	$('#yP').on('click', function() {
-		move.y = move.y+$('#jogSize'.val());
+		move.y = move.y+$('#jogSize').val();
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' Y'+$('#jogSize').val()});
 	});
 
 	$('#yM').on('click', function() {
-		move.y = move.y-$('#jogSize'.val());
+		move.y = move.y-$('#jogSize').val();
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' Y-'+$('#jogSize').val()});
 	});
 
