@@ -202,18 +202,18 @@ function serialData(data, port) {
 		t = t.split(/\|/);
 		//split out the position info, default to mpos
 		mp = t[1].split(/,|:/);
-		ex = t[2];
-		//console.log(t[3]);
-		// split on , and :
-		//t = t.split(/,|:/);
-		if(t[3] != undefined && t[3][0] == "WCO"){
-			console.log("updating");
-			var wco = {
-				x: t[3][1],
-				y: t[3][2],
-				z: t[3][3]
-			};
-			emitToPortSockets(port, 'WCO', wco);
+		
+		//find the WCO and update when grbl sends an update
+		if(t[3] != undefined){
+			w = t[3].split(/,|:/);
+			if(w[0] == "WCO"){
+				var wco = {
+					x: w[1],
+					y: w[2],
+					z: w[3]
+				};
+				emitToPortSockets(port, 'WCO', wco);
+			}
 		}
 		var machineData = {
 			'status': t[0],
