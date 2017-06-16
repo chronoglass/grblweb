@@ -211,7 +211,7 @@ function serialData(data, port) {
 				x: t[3][1],
 				y: t[3][2],
 				z: t[3][3]
-			}
+			};
 		}
 		emitToPortSockets(port, 'WCO', wco);
 		var machineData = {
