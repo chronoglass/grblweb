@@ -213,8 +213,8 @@ function serialData(data, port) {
 				y: t[3][2],
 				z: t[3][3]
 			};
+			emitToPortSockets(port, 'WCO', wco);
 		}
-		emitToPortSockets(port, 'WCO', wco);
 		var machineData = {
 			'status': t[0],
 			'mpos': [mp[1], mp[2], mp[3]],
