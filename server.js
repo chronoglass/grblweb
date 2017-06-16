@@ -199,18 +199,25 @@ function serialData(data, port) {
 
 		// remove last >
 		t = t.substr(0,t.length-2);
-		console.log(t);
 		t = t.split(/\|/);
 		//split out the position info, default to mpos
 		mp = t[1].split(/,|:/);
 		ex = t[2];
+		console.log(t[3]);
 		// split on , and :
 		//t = t.split(/,|:/);
-
+		if(t[3] != undefined && t[3][0] == "WCO"){
+			var wco = {
+				x: t[3][1],
+				y: t[3][2],
+				z: t[3][3]
+			}
+		}
+		emitToPortSockets(port, 'WCO', wco);
 		var machineData = {
 			'status': t[0],
 			'mpos': [mp[1], mp[2], mp[3]],
-			'wpos':["NA", "NA", "NA"],
+			'wpos':["", "NA", "NA"],
 			'unitsOfMeasurement': unitsOfMeasurement
 		};
 
