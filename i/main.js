@@ -33,7 +33,9 @@ TODO: "Click" the "Jog Control" tab when the config reloads (just in case)
 var lastUnitsOfMeasurement = '';
 var unitsBeforeProbe = '';
 var config = {};
-var xmove, ymove, zmove;
+var move = {x: 0,
+			y: 0,
+			z: 0 };
 
 $(document).ready(function() {
 	$( window ).resize(function() {
@@ -184,9 +186,9 @@ $(document).ready(function() {
 		$('#mY').html('Y: '+data.mpos[1]);
 		$('#mZ').html('Z: '+data.mpos[2]);
 		// TODO calculate wpos here
-		$('#wX').html('X: '+xmove);
-		$('#wY').html('Y: '+ymove);
-		$('#wZ').html('Z: '+zmove);
+		$('#wX').html('X: '+move.x);
+		$('#wY').html('Y: '+move.y);
+		$('#wZ').html('Z: '+move.z);
 
 		// Only attempt to change things if the unit of measurement has changed
 		if(data.unitsOfMeasurement!=lastUnitsOfMeasurement) {
@@ -394,9 +396,9 @@ $(document).ready(function() {
 	});
 
 	$('#sendZero').on('click', function() {
-		xmove = 0;
-		ymove = 0;
-		zmove = 0;
+		move.x = 0;
+		move.y = 0;
+		move.z = 0;
 		socket.emit('gcodeLine', { line: 'G92 X0 Y0 Z0' });
 		socket.emit('gcodeLine', { line: 'G28.1' });
 	});
@@ -455,22 +457,22 @@ $(document).ready(function() {
 	});
 
 	$('#xM').on('click', function() {
-		xmove = xmove+$('#jogSize'.val());
+		move.x = move.x+$('#jogSize'.val());
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' X-'+$('#jogSize').val()});
 	});
 
 	$('#xP').on('click', function() {
-		xmove = xmove-$('#jogSize'.val());
+		move.x = move.x-$('#jogSize'.val());
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' X'+$('#jogSize').val()});
 	});
 
 	$('#yP').on('click', function() {
-		ymove = ymove+$('#jogSize'.val());
+		move.y = move.y+$('#jogSize'.val());
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' Y'+$('#jogSize').val()});
 	});
 
 	$('#yM').on('click', function() {
-		ymove = ymove-$('#jogSize'.val());
+		move.y = move.y-$('#jogSize'.val());
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' Y-'+$('#jogSize').val()});
 	});
 
@@ -489,7 +491,7 @@ $(document).ready(function() {
 		// Throw a warning in the console
 		$('#console').append('<p><span style="color:red !important;font-weight:bold">!!!!: Only moved '+distance+lastUnitsOfMeasurement+' due to maxMoveZ safety limit</span></p>');
 		$('#console').scrollTop($("#console")[0].scrollHeight - $("#console").height());
-		zmove = zmove+distance;
+		move.z = move.z+distance;
 		socket.emit('gcodeLine', { line: '$J=G91 F'+$('#jogSpeed').val()+' Z'+distance});
 	});
 
@@ -508,7 +510,7 @@ $(document).ready(function() {
 		// Throw a warning in the console
 		$('#console').append('<p><span style="color:red !important;font-weight:bold">!!!!: Only moved '+distance+lastUnitsOfMeasurement+' due to maxMoveZ safety limit</span></p>');
 		$('#console').scrollTop($("#console")[0].scrollHeight - $("#console").height());
-		zmove = zmove-distance;
+		move.z = move.z-distance;
 		socket.emit('gcodeLine', { line: '$J G91 F'+$('#jogSpeed').val()+' Z-'+distance});
 	});
 
